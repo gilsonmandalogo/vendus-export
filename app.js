@@ -71,17 +71,20 @@ const exportFile = async (options) => {
       config: {
         e2e: {
           baseUrl: config['base-url'],
+          supportFile: path.resolve(dirname, 'cypress/support/e2e.js'),
+          specPattern: path.resolve(dirname, 'cypress/e2e/*.cy.js'),
         },
       },
       env: {
         user: config.user,
         password: config.password,
-        output,
+        output: path.resolve(output),
         start: formatDate(start),
         end: formatDate(end),
       },
-      spec: './cypress/e2e/exportPdf.cy.js',
+      spec: path.resolve(dirname, 'cypress/e2e/exportPdf.cy.js'),
       quiet: true,
+      configFile: path.resolve(dirname, 'cypress.config.js'),
     })
 
     log(chalk.bold.green('Done, enjoy your saved time!'))
