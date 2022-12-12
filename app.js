@@ -29,7 +29,7 @@ function main() {
   const exportCommand = program.command('export')
   exportCommand
     .description('Exports to pdf files a complete month of documents')
-    .option('-m, --month <number>', 'Month to be exported', String(new Date().getMonth() + 1))
+    .option('-m, --month <number>', 'Month to be exported', String(new Date().getMonth()))
     .requiredOption('-o, --output <path>', 'Path to save exported zip file')
     .action(exportFile)
 
