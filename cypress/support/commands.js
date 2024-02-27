@@ -1,4 +1,4 @@
-import 'cypress-downloadfile/lib/downloadFileCommand'
+import 'cypress-downloadfile/lib/downloadFileCommand.js'
 
 // ***********************************************
 // This example commands.js shows you how to
