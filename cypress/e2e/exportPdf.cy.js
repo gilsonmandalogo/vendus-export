@@ -3,6 +3,8 @@
 
 describe('export PDF', () => {
   it('exports each PDF file', () => {
+    cy.on('uncaught:exception', () => false)
+
     cy.visit('/login/')
 
     cy.task('status', 'Authenticating...')

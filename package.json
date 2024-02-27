@@ -1,6 +1,6 @@
 {
   "name": "vendus-export",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "main": "app.js",
   "repository": "git@github.com:gilsonmandalogo/vendus-export.git",
   "author": "Gilson Júnior <gilsonmandalogo@hotmail.com>",
@@ -13,12 +13,12 @@
     "vendus-export": "./app.js"
   },
   "devDependencies": {
-    "@types/node": "^18.11.10"
+    "@types/node": "^20"
   },
   "dependencies": {
-    "chalk": "^5.1.2",
-    "commander": "^9.4.1",
-    "cypress": "^11.2.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "cypress": "^13.6.6",
     "cypress-downloadfile": "^1.2.3"
   }
 }
