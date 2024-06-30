@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 /// <reference types="cypress-downloadfile"/>
 
-describe('export PDF', () => {
-  it('exports each PDF file', () => {
+describe('export PDF', function() {
+  it('exports each PDF file', function() {
     cy.on('uncaught:exception', () => false)
 
     cy.visit('/login/')
@@ -20,7 +20,15 @@ describe('export PDF', () => {
     cy.get('#list-filter-end').type(Cypress.env('end'), { force: true })
     cy.get('#office-list-filter > [type="submit"]').click({ force: true })
 
-    cy.get('#office-export-cancel').then(button => {
+    cy.wait(2000)
+    cy.get('body').then(function(body) {
+      if (body.find(':contains("Sem Documentos em Faturação.")').length > 0) {
+        cy.task('status', 'No documents in this date window!')
+        this.skip()
+      }
+    })
+
+    cy.get('#office-export-cancel').then(function(button) {
       if (button.is(':visible')) {
         button.trigger('click')
       }
@@ -30,8 +38,8 @@ describe('export PDF', () => {
     cy.task('status', 'Exporting documents...')
     cy.get('#office-export-btn').click()
     cy.wait(2000)
-    cy.get('#office-export-done-link:visible', { timeout: 600000 }).then(button => {
-      cy.task('parsePath', Cypress.env('output')).then(({ base, dir }) => {
+    cy.get('#office-export-done-link:visible', { timeout: 600000 }).then(function(button) {
+      cy.task('parsePath', Cypress.env('output')).then(function({ base, dir }) {
         cy.task('status', `Downloading "${base}" file into "${dir}"...`)
         cy.downloadFile(button.attr('href'), dir, base)
       })
