@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@cypress/request@^3.0.1":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@cypress/request/-/request-3.0.4.tgz#03ce5269e41ac02183d36e8571ee7a1e3457442b"
-  integrity sha512-eqNHMsxEXuit0sRvvWoGG3/4+Q5qwqjKARWXKM/KoSsKvTNBwWt8pwspg5+TniP3POAZcPPx0O8CiEIQ4e6NWg==
+"@cypress/request@^3.0.4":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@cypress/request/-/request-3.0.5.tgz#d893a6e68ce2636c085fcd8d7283c3186499ba63"
+  integrity sha512-v+XHd9XmWbufxF1/bTaVm2yhbxY+TB4YtWRqF2zaXBlDNMkls34KiATz0AVDLavL3iB6bQk9/7n3oY1EoLSWGA==
   dependencies:
     aws-sign2 "~0.7.0"
     aws4 "^1.8.0"
@@ -18,7 +18,7 @@
     combined-stream "~1.0.6"
     extend "~3.0.2"
     forever-agent "~0.6.1"
-    form-data "~2.5.0"
+    form-data "~4.0.0"
     http-signature "~1.4.0"
     is-typedarray "~1.0.0"
     isstream "~0.1.2"
@@ -267,7 +267,7 @@ colorette@^2.0.16:
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.19.tgz#cdf044f47ad41a0f4b56b3a0d5b4e6e1a2d5a798"
   integrity sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==
 
-combined-stream@^1.0.6, combined-stream@~1.0.6:
+combined-stream@^1.0.8, combined-stream@~1.0.6:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
@@ -319,11 +319,11 @@ cypress-downloadfile@^1.2.4:
     fs-extra "^11.2.0"
 
 cypress@^13.12.0:
-  version "13.14.2"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.14.2.tgz#4237eb7b26de2baeaa1f01e585f965d88fca7f39"
-  integrity sha512-lsiQrN17vHMB2fnvxIrKLAjOr9bPwsNbPZNrWf99s4u+DVmCY6U+w7O3GGG9FvP4EUVYaDu+guWeNLiUzBrqvA==
+  version "13.15.0"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.15.0.tgz#5eca5387ef34b2e611cfa291967c69c2cd39381d"
+  integrity sha512-53aO7PwOfi604qzOkCSzNlWquCynLlKE/rmmpSPcziRH6LNfaDUAklQT6WJIsD8ywxlIy+uVZsnTMCCQVd2kTw==
   dependencies:
-    "@cypress/request" "^3.0.1"
+    "@cypress/request" "^3.0.4"
     "@cypress/xvfb" "^1.2.4"
     "@types/sinonjs__fake-timers" "8.1.1"
     "@types/sizzle" "^2.3.2"
@@ -522,13 +522,13 @@ forever-agent@~0.6.1:
   resolved "https://registry.yarnpkg.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
   integrity sha512-j0KLYPhm6zeac4lz3oJ3o65qvgQCcPubiyotZrXqEaG4hNagNYO8qdlUrX5vwqv9ohqeT/Z3j6+yW067yWWdUw==
 
-form-data@~2.5.0:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.1.tgz#f2cbec57b5e59e23716e128fe44d4e5dd23895f4"
-  integrity sha512-m21N3WOmEEURgk6B9GLOE4RuWOFf28Lhh9qGYeNlGq4VDXUlJy2th2slBNU8Gp8EzloYZOibZJ7t5ecIrFSjVA==
+form-data@~4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
+  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
   dependencies:
     asynckit "^0.4.0"
-    combined-stream "^1.0.6"
+    combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
 fs-extra@^11.2.0:
