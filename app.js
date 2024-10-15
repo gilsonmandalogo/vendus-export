@@ -16,12 +16,6 @@ const appPath = path.resolve(os.homedir(), '.config', app.name)
 const configPath = path.resolve(appPath, '.config.json')
 
 function main() {
-  fs.mkdirSync(appPath, { recursive: true })
-
-  if (!fs.existsSync(configPath)) {
-    fs.writeFileSync(configPath, '{}', 'utf-8')
-  }
-
   program
     .name(app.name)
     .version(app.version)
@@ -31,6 +25,7 @@ function main() {
     .description('Exports to pdf files a complete month of documents')
     .option('-m, --month <number>', 'Month to be exported', String(new Date().getMonth()))
     .requiredOption('-o, --output <path>', 'Path to save exported zip file')
+    .option('-c, --config <path>', 'Custom path for configuration file', configPath)
     .action(exportFile)
 
   const configCommand = program.command('config <name> [value]')
@@ -46,7 +41,7 @@ const exportFile = async (options) => {
     log(chalk.underline(`${app.name} v${app.version}`))
     log('')
 
-    validateConfig()
+    validateConfig(options.config)
 
     const { month, output } = options
     const selectedMonth = parseInt(month)
@@ -104,6 +99,12 @@ const exportFile = async (options) => {
 }
 
 const configAction = (name, value) => {
+  fs.mkdirSync(appPath, { recursive: true })
+
+  if (!fs.existsSync(configPath)) {
+    fs.writeFileSync(configPath, '{}', 'utf-8')
+  }
+
   const file = fs.readFileSync(configPath, 'utf-8')
   const parsed = JSON.parse(file)
 
@@ -115,8 +116,8 @@ const configAction = (name, value) => {
   }
 }
 
-function validateConfig() {
-  const file = fs.readFileSync(configPath, 'utf-8')
+function validateConfig(path) {
+  const file = fs.readFileSync(path, 'utf-8')
   const parsed = JSON.parse(file)
   const keys = ['base-url', 'user', 'password']
 
