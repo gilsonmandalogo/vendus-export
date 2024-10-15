@@ -1,6 +1,6 @@
 {
   "name": "vendus-export",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "main": "app.js",
   "repository": "git@github.com:gilsonmandalogo/vendus-export.git",
   "author": "Gilson Júnior <gilsonmandalogo@hotmail.com>",
