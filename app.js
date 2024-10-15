@@ -116,8 +116,8 @@ const configAction = (name, value) => {
   }
 }
 
-function validateConfig(path) {
-  const file = fs.readFileSync(path.resolve(path), 'utf-8')
+function validateConfig(configPath) {
+  const file = fs.readFileSync(path.resolve(configPath), 'utf-8')
   const parsed = JSON.parse(file)
   const keys = ['base-url', 'user', 'password']
 
