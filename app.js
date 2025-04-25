@@ -26,7 +26,7 @@ function main() {
     .option('-m, --month <number>', 'Month to be exported', String(new Date().getMonth()))
     .requiredOption('-o, --output <path>', 'Path to save exported zip file')
     .option('-c, --config <path>', 'Custom path for configuration file', configPath)
-    .action(exportFile)
+    .action(exportFileAction)
 
   const configCommand = program.command('config <name> [value]')
   configCommand
@@ -36,15 +36,17 @@ function main() {
   program.parse()
 }
 
-const exportFile = async (options) => {
+async function exportFileAction(options) {
+  log(chalk.underline(`${app.name} v${app.version}`))
+  log('')
+
+  validateConfig(options)
+  await doExportFileAction()
+}
+
+async function doExportFileAction() {
   try {
-    log(chalk.underline(`${app.name} v${app.version}`))
-    log('')
-
-    validateConfig(options.config)
-
-    const { month, output } = options
-    const selectedMonth = parseInt(month)
+    const selectedMonth = parseInt(config.month)
 
     if (selectedMonth === NaN) {
       throw new Error('Invalid month')
@@ -73,7 +75,7 @@ const exportFile = async (options) => {
       env: {
         user: config.user,
         password: config.password,
-        output: path.resolve(output),
+        output: path.resolve(config.output),
         start: formatDate(start),
         end: formatDate(end),
       },
@@ -98,7 +100,7 @@ const exportFile = async (options) => {
   }
 }
 
-const configAction = (name, value) => {
+function configAction(name, value) {
   fs.mkdirSync(appPath, { recursive: true })
 
   if (!fs.existsSync(configPath)) {
@@ -116,13 +118,11 @@ const configAction = (name, value) => {
   }
 }
 
-function validateConfig(configPath) {
-  const file = fs.readFileSync(path.resolve(configPath), 'utf-8')
-  const parsed = JSON.parse(file)
-  const keys = ['base-url', 'user', 'password']
+function validateOptions(options) {
+  const keys = ['base-url', 'user', 'password', 'output']
 
   for (const key of keys) {
-    if (!parsed[key]) {
+    if (!options[key]) {
       throw new Error(`${key} is missing on configuration`)
     }
   }
@@ -130,8 +130,19 @@ function validateConfig(configPath) {
   Object.assign(config, parsed)
 }
 
+function validateConfig(options) {
+  const file = fs.readFileSync(path.resolve(options.config), 'utf-8')
+  const parsed = JSON.parse(file)
+  validateOptions({ ...parsed, ...options })
+}
+
 function formatDate(date) {
   return `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`
+}
+
+export async function exportFile(options) {
+  validateOptions(options)
+  await doExportFileAction()
 }
 
 main()
