@@ -7,6 +7,7 @@ import url from 'url'
 import chalk from 'chalk'
 import { program } from 'commander'
 import cypress from 'cypress'
+import esMain from 'es-main'
 
 const log = console.log
 const config = {}
@@ -126,14 +127,14 @@ function validateOptions(options) {
       throw new Error(`${key} is missing on configuration`)
     }
   }
-
-  Object.assign(config, parsed)
 }
 
 function validateConfig(options) {
   const file = fs.readFileSync(path.resolve(options.config), 'utf-8')
   const parsed = JSON.parse(file)
-  validateOptions({ ...parsed, ...options })
+  const fullOptions = { ...parsed, ...options }
+  validateOptions(fullOptions)
+  Object.assign(config, fullOptions)
 }
 
 function formatDate(date) {
@@ -142,7 +143,10 @@ function formatDate(date) {
 
 export async function exportFile(options) {
   validateOptions(options)
+  Object.assign(config, options)
   await doExportFileAction()
 }
 
-main()
+if (esMain(import.meta)) {
+  main()
+}

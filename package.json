@@ -1,6 +1,6 @@
 {
   "name": "vendus-export",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "main": "app.js",
   "types": "types.d.ts",
   "repository": "git@github.com:gilsonmandalogo/vendus-export.git",
@@ -20,6 +20,7 @@
     "chalk": "^5",
     "commander": "^13",
     "cypress": "^14",
-    "cypress-downloadfile": "^1"
+    "cypress-downloadfile": "^1",
+    "es-main": "^1"
   }
 }
